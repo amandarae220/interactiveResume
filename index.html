@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:wght@400;700&family=Lobster&family=Oswald&family=Young+Serif&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- specific plugin -->
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+
+</head>
+
+<body>
+
+    <h1 id="name">AMANDA LLOYD</h1>
+    <h2 id="title" style="margin-top: 1%;">Developer & Visual Designer</h2>
+
+    <div id="ganttContainer" class="border">
+        <div id="ganttChart" style="text-align: center">
+            <div id="tag"></div>
+        </div>
+    </div>
+
+    <div class="bottomHalf">
+        <div id="skillsContainer" class="bottomHalfLeft">
+            <svg class="skills" style="margin-bottom: -150px; margin-top: -50px;"></svg>
+        </div>
+        <div id="detailsContainer" class="bottomHalfRight">
+            <div id="detailsDiv" class="border">
+                <div style="margin-bottom: 5px; height: 25%; margin-top: 15px;">
+                    <p id="role" style="margin-top: 5px; margin-bottom: 0px;"></p>
+                    <p id="company" style="margin-top: 0px; margin-bottom: 0px;"></p>
+                    <p id="location" style="margin-top: 0px; margin-bottom: 0px;"></p>
+                </div>
+                <p style="margin-bottom: 10px; margin-top: 5px;">Duration: <span id="duration"></span></p>
+                <p style="margin-bottom: 10px; margin-top: 5px;">Description: </p>
+                <div id="description" style="padding-right: 2%"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="ganttChart.js"></script>
+    <script src="hexbinChart.js"></script>
+
+</body>
+
+</html>
