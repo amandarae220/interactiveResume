@@ -6,6 +6,29 @@ font-family: 'Oswald', sans-serif;
 font-family: 'Young Serif', serif;
 */
 
+/* for all screens */
+#info {display: none;}
+
+/* only when orientation is in portrait mode */
+@media all and (orientation:portrait) {
+    #info {
+         position: absolute;
+         width: 100%;
+         height: 100vh;
+         line-height: 100vh;
+         top: 0;
+         left: 0;
+         z-index: 9998;
+         display: block;
+         overflow-y: hidden;
+         overflow-x: hidden;
+         background-color: rgba(0, 0, 0, 0.5);
+         text-align: center;
+         color: #FFFFFF;
+         font-size: 4vw;
+    }
+}
+
 #name {
     padding-top: 2%;
     text-align: center;
@@ -25,16 +48,16 @@ font-family: 'Young Serif', serif;
 
 body {
     background: #fff;
-    font-family: 'Open-Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
 
 }
 
 .border {
     border: 1px solid black;
-    padding: 1px;
     border-radius: 8px;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding: 1px;
+    /*margin-left: 5%;
+    margin-right: 5%;*/
     margin-top: 2%;
 }
 
@@ -45,9 +68,10 @@ body {
 
 
 .bottomHalfLeft {
-    width: 40vw;
+    width: 43%;
     height: 100%;
     display: inline-block;
+    font-family: 'Lato', sans-serif;
 }
 
 
@@ -58,12 +82,14 @@ body {
 }
 
 .bottomHalfRight {
-    width: 56vw;
+    width: 56%;
     height: 100%;
     display: inline-block;
     vertical-align: top;
     padding-top: 4vh;
     margin-bottom: 3vh;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.3vw;
 }
 
 #detailsDiv {
@@ -98,7 +124,7 @@ body {
 #tag {
     color: black;
     background: #b1b1b1;
-    width: 100px;
+    width: 110px;
     position: absolute;
     display: none;
     padding: 3px 6px;
@@ -164,3 +190,9 @@ body {
   strong {
     color: #6666ff;
   }
+
+ #detailsContainer p {
+    font-size: 1.25vw;
+  }
+
+  
