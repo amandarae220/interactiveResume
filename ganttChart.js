@@ -118,7 +118,7 @@ var taskArray = [
         company: "Accenture Federal Services",
         location: "Washington, DC",
         startTime: "8/21/19", //year/month/day
-        endTime: "12/11/23",
+        endTime: "3/18/24",
         details: "d3.js, angular, javascript, html, css, servicenow, jira, tableau, illustrator, inDesign",
         description: [
             "Build out UI components in <strong>Angular</strong> and <strong>ServiceNow</strong> in support of front-end UI development for a public-facing application",
@@ -189,15 +189,15 @@ var w = 1200;
 var h = 325;
 var aspect = w / h;
 
+console.log(width);
+console.log(height);
+
 var svg1 = d3.select("div#ganttChart")
-    .append("div")
-    .classed("svg-container", true)
     .append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1200 325")
-    .classed("svg-content-responsive", true)
-    .attr("width", 1200)
-    .attr("height", 325);
+    .attr("width", '100%')
+    .attr("height", '100%')
+    .attr('viewBox','0 0 1200 275')
+    .attr('preserveAspectRatio','xMinYMin');
 
 
 var dateFormat = d3.timeParse("%m/%d/%y");
@@ -270,8 +270,8 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
 
         var output = document.getElementById("tag");
 
-        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 115 + "px";
-        var y = this.y.animVal.value + 120 + "px";
+        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 0 + "px";
+        var y = this.y.animVal.value + 60 + "px";
 
         output.innerHTML = tag;
         output.style.top = y;
@@ -286,8 +286,40 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
     innerRects.on("click", function (d) {
 
         if (!d3.select(this).classed("selected")) {
+
+            // if another tag has already been selected, remove the 'selected' class 
+            if (d3.select("body").selectAll(".selected")) {
+                    // the user should only be able to select one role at a time 
+                    d3.select("body").selectAll(".selected").classed("selected",false);
+            };
+
+            // add the 'selected' class to the newly selected tag 
             d3.select(this).classed("selected", true)
 
+            // get the skills associated with the selected role in the gantt so we can filter the skills hexagons
+            vals = d3.select(this)._groups[0][0].__data__.details;
+
+            console.log(vals);
+
+            // hide skills that aren't included in the role
+            svg2.selectAll("text")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    return !vals.includes(d3.select(this).text());
+                })
+                .style("opacity", "0");
+
+            // show skills that are included in the role
+            svg2.selectAll("text")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    return vals.includes(d3.select(this).text());
+                })
+                .style("opacity", "1");
+
+            // get the role info for the details container
             var role = d3.select(this).data()[0].task;
             var roleOutput = document.getElementById("role");
             roleOutput.innerHTML = role;
@@ -311,32 +343,27 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
                 str += '<li>' + desc + '</li>';
             });
             str += '</ul>';
-            console.log(str);
 
             var descriptionOutput = document.getElementById("description");
             descriptionOutput.innerHTML = str;
 
+        } else {
+
+            // remove the 'selected' class since the user is deselecting the role 
+            d3.select(this).classed("selected", false);
+
+            // get the skills associated with the selected role in the gantt so we can filter the skills hexagons
             vals = d3.select(this)._groups[0][0].__data__.details;
 
+            // show all skills in the hexagon since nothing should be selected at this point 
             svg2.selectAll("text")
                 .transition()
-                .duration(500)
-                .filter(function () {
-                    return vals.includes(d3.select(this).text());
-                })
-                .style("opacity", "1");
-
-
-            svg2.selectAll("text")
-                .transition()
-                .duration(500)
+                .duration(0)
                 .filter(function () {
                     return !vals.includes(d3.select(this).text());
                 })
-                .style("opacity", "0");
+                .style("opacity", "1");
 
-        } else {
-            d3.select(this).classed("selected", false);
             var roleOutput = document.getElementById("role");
             roleOutput.innerHTML = " <i>(select a role to view more details)</i> ";
 
@@ -351,15 +378,6 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
 
             var descriptionOutput = document.getElementById("description");
             descriptionOutput.innerHTML = " ";
-
-            //instructions for unselection
-            svg2.selectAll("text")
-                .transition()
-                .duration(500)
-                .filter(function () {
-                    return !vals.includes(d3.select(this).text());
-                })
-                .style("opacity", "1");
 
             var output = document.getElementById("tag");
             output.style.display = "none";
@@ -383,26 +401,26 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         .attr("fill", "#fff")
         .attr("class", "balance");
 
-        rectText.on("mouseover", function (d) {
-            vals = d3.select(this)._groups[0][0].__data__.details;
-    
-            var tag = "Duration: " + d3.select(this).data()[0].duration + "<br/>" +
-                "(" + d3.select(this).data()[0].startTime + " - " + d3.select(this).data()[0].endTime + ")";
-    
-            var output = document.getElementById("tag");
-    
-            var x = (this.x.animVal.value + this.width.animVal.value / 2) + 115 + "px";
-            var y = this.y.animVal.value + 140 + "px";
-    
-            output.innerHTML = tag;
-            output.style.top = y;
-            output.style.left = x;
-            output.style.display = "block";
-    
-        }).on('mouseout', function () {
-            var output = document.getElementById("tag");
-            output.style.display = "none";
-        });
+    rectText.on("mouseover", function (d) {
+        vals = d3.select(this)._groups[0][0].__data__.details;
+
+        var tag = "Duration: " + d3.select(this).data()[0].duration + "<br/>" +
+            "(" + d3.select(this).data()[0].startTime + " - " + d3.select(this).data()[0].endTime + ")";
+
+        var output = document.getElementById("tag");
+
+        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 115 + "px";
+        var y = this.y.animVal.value + 140 + "px";
+
+        output.innerHTML = tag;
+        output.style.top = y;
+        output.style.left = x;
+        output.style.display = "block";
+
+    }).on('mouseout', function () {
+        var output = document.getElementById("tag");
+        output.style.display = "none";
+    });
 
 }
 
@@ -416,7 +434,7 @@ function makeGrid(theSidePad, theTopPad, w, h) {
 
     var grid = svg1.append('g')
         .attr('class', 'grid')
-        .attr('transform', 'translate(' + theSidePad + ', ' + (h - 80) + ')')
+        .attr("transform", "translate(" + 1 + "," + 240 + ")")
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "middle")
