@@ -270,8 +270,8 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
 
         var output = document.getElementById("tag");
 
-        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 0 + "px";
-        var y = this.y.animVal.value + 60 + "px";
+        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 20 + "px";
+        var y = this.y.animVal.value + 82 + "px";
 
         output.innerHTML = tag;
         output.style.top = y;
