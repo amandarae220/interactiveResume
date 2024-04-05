@@ -84,7 +84,7 @@ body {
 
 .bottomHalfRight {
     width: 56%;
-    height: 90%;
+    /*height: 90%;*/
     display: inline-block;
     vertical-align: top;
     padding-top: 1vh;
