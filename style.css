@@ -29,6 +29,12 @@ font-family: 'Young Serif', serif;
     }
 }
 
+@media screen and (min-width: 300px) {
+    div {
+       font-size: 12px;
+    }
+  }
+
 #name {
     padding-top: 2%;
     text-align: center;
@@ -63,13 +69,13 @@ body {
 }
 
 .bottomHalf {
-    height: 33vh;
+    height: 46vh;
 }
 
 
 
 .bottomHalfLeft {
-    width: 43%;
+    width: 45%;
     height: 100%;
     display: inline-block;
     font-family: 'Lato', sans-serif;
@@ -83,13 +89,30 @@ body {
 }
 
 .bottomHalfRight {
-    width: 56%;
-    height: 90%;
+    width: 54%;
     display: inline-block;
     vertical-align: top;
     padding-top: 1vh;
     font-family: 'Lato', sans-serif;
-    font-size: 1.3vw;
+    --r: 577.4 / 250.52;
+
+    aspect-ratio: var(--r);
+    
+    /* 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    */
+}
+
+li {
+    font-size: 1vmax;
+    font-family: 'Lato', sans-serif;
+}
+
+ul {
+    margin-top: 6px; 
+    padding-left: 2%;
 }
 
 #detailsDiv {
@@ -188,11 +211,16 @@ body {
   }
 
   strong {
-    color: #6666ff;
+    color: #6b18f1;
   }
 
  #detailsContainer p {
-    font-size: 1.25vw;
+    font-size: 1vmax;
+  }
+
+  .selected {
+    stroke: black;
+    stroke-width: 2;
   }
 
   
