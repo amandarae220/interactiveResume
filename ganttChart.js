@@ -88,7 +88,7 @@ svg2.append("g")
     .attr("stroke", "#fff")
     .attr("stroke-width", "2px")
     .style("fill", function (d) {
-        return "#7A2DFD"; //color(d.length); 
+        return "#6666ff"; //color(d.length); 
     });
 
 svg2.append("g")
