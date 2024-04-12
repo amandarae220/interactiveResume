@@ -261,7 +261,7 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         .attr("stroke", "none")
         .attr("fill", "#6666ff")
 
-
+/*
     innerRects.on("mouseover", function (d) {
         vals = d3.select(this)._groups[0][0].__data__.details;
 
@@ -282,6 +282,7 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         var output = document.getElementById("tag");
         output.style.display = "none";
     });
+    */
 
     innerRects.on("click", function (d) {
 
@@ -400,7 +401,7 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         .attr("text-height", theBarHeight)
         .attr("fill", "#fff")
         .attr("class", "balance");
-
+/*
     rectText.on("mouseover", function (d) {
         vals = d3.select(this)._groups[0][0].__data__.details;
 
@@ -421,6 +422,7 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         var output = document.getElementById("tag");
         output.style.display = "none";
     });
+    */
 
 }
 
