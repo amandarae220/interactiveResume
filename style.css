@@ -35,7 +35,7 @@ font-family: 'Young Serif', serif;
     }
   }
 
-  @media screen and (min-width: 800px) {
+  @media (orientation: landscape) {
     #tag {
        display: none;
     }
