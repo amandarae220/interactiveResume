@@ -35,11 +35,13 @@ font-family: 'Young Serif', serif;
     }
 }
 
+/*
 @media screen and (max-width: 667px) and (orientation: landscape) {
     #tag {
        display: none;
     }
 }
+*/
 
 #name {
     padding-top: 2%;
@@ -149,7 +151,7 @@ ul {
     stroke-width: 0;
 }
 
-
+/*
 #tag {
     color: black;
     background: #b1b1b1;
@@ -174,6 +176,7 @@ ul {
     border-top-color: #b1b1b1;
     bottom: -20px !important;
 }
+*/
 
 .balance {
     text-wrap: balance;
