@@ -35,6 +35,12 @@ font-family: 'Young Serif', serif;
     }
   }
 
+  @media screen and (min-width: 800px) {
+    #tag {
+       display: none;
+    }
+  }
+
 #name {
     padding-top: 2%;
     text-align: center;
