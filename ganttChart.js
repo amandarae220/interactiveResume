@@ -14,24 +14,24 @@ skillsData = [
     { x: 40, y: 0, label: "" },
     { x: 60, y: 0, label: "" },
     { x: 80, y: 0, label: "" },
-    { x: 10, y: 18, label: "css" },
-    { x: 30, y: 18, label: "html" },
-    { x: 50, y: 18, label: "javascript" },
-    { x: 70, y: 18, label: "angular" },
-    { x: 90, y: 18, label: "VBA" },
-    { x: 0, y: 36, label: "" },
-    { x: 20, y: 36, label: "d3.js" },
-    { x: 40, y: 36, label: "tableau" },
-    { x: 60, y: 36, label: "illustrator" },
-    { x: 80, y: 36, label: "powershell" },
-    { x: 10, y: 54, label: "servicenow" },
-    { x: 30, y: 54, label: "mySQL" },
-    { x: 50, y: 54, label: "jira" },
-    { x: 70, y: 54, label: "stata" },
+    { x: 10, y: 22, label: "css" },
+    { x: 30, y: 22, label: "html" },
+    { x: 50, y: 22, label: "javascript" },
+    { x: 70, y: 22, label: "angular" },
+    { x: 90, y: 22, label: "VBA" },
+    { x: 0, y: 44, label: "" },
+    { x: 20, y: 44, label: "d3.js" },
+    { x: 40, y: 44, label: "tableau" },
+    { x: 60, y: 44, label: "illustrator" },
+    { x: 80, y: 44, label: "powershell" },
+    { x: 10, y: 66, label: "servicenow" },
+    { x: 30, y: 66, label: "mySQL" },
+    { x: 50, y: 66, label: "jira" },
+    { x: 70, y: 66, label: "stata" },
 ];
 
-skillsContainerWidth = 600;
-skillsContainerHeight = 400;
+skillsContainerWidth = 530;
+skillsContainerHeight = 300;
 
 
 // set the dimensions and margins of the graph
@@ -66,7 +66,7 @@ skillsData.forEach(function (d) {
 
 var hexbin = d3.hexbin()
     .size([width, height])
-    .radius((width / 4.5) / 2.5); // dictates the size of the hex
+    .radius((width / 5) / 2.2); // dictates the size of the hex
 
 var svg2 = d3.select("#skillsContainer")
     .select("svg")
@@ -270,8 +270,8 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
 
         var output = document.getElementById("tag");
 
-        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 20 + "px";
-        var y = this.y.animVal.value + 82 + "px";
+        var x = (this.x.animVal.value + this.width.animVal.value / 2) -10 + "px";
+        var y = this.y.animVal.value + 78 + "px";
 
         output.innerHTML = tag;
         output.style.top = y;
@@ -299,8 +299,6 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
             // get the skills associated with the selected role in the gantt so we can filter the skills hexagons
             vals = d3.select(this)._groups[0][0].__data__.details;
 
-            console.log(vals);
-
             // hide skills that aren't included in the role
             svg2.selectAll("text")
                 .transition()
@@ -318,6 +316,8 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
                     return vals.includes(d3.select(this).text());
                 })
                 .style("opacity", "1");
+
+            
 
             // get the role info for the details container
             var role = d3.select(this).data()[0].task;
@@ -481,3 +481,4 @@ d3.selectAll('.hexagon').on("mouseout", function (d) {
         })
         .style("opacity", "1");
 });
+
