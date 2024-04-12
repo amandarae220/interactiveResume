@@ -11,35 +11,35 @@ font-family: 'Young Serif', serif;
 
 /* only when orientation is in portrait mode */
 @media all and (orientation:portrait) {
-    #info {
-         position: absolute;
-         width: 100%;
-         height: 100vh;
-         line-height: 100vh;
-         top: 0;
-         left: 0;
-         z-index: 9998;
-         display: block;
-         overflow-y: hidden;
-         overflow-x: hidden;
-         background-color: rgba(0, 0, 0, 0.5);
-         text-align: center;
-         color: #FFFFFF;
-         font-size: 4vw;
-    }
+#info {
+     position: absolute;
+     width: 100%;
+     height: 100vh;
+     line-height: 100vh;
+     top: 0;
+     left: 0;
+     z-index: 9998;
+     display: block;
+     overflow-y: hidden;
+     overflow-x: hidden;
+     background-color: rgba(0, 0, 0, 0.5);
+     text-align: center;
+     color: #FFFFFF;
+     font-size: 4vw;
+}
 }
 
 @media screen and (min-width: 300px) {
     div {
        font-size: 12px;
     }
-  }
+}
 
-  @media (orientation: landscape) {
+@media screen and (max-width: 667px) and (orientation: landscape) {
     #tag {
        display: none;
     }
-  }
+}
 
 #name {
     padding-top: 2%;
@@ -101,14 +101,14 @@ body {
     padding-top: 1vh;
     font-family: 'Lato', sans-serif;
     --r: 577.4 / 250.52;
-
-    aspect-ratio: var(--r);
     
-    /* 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    */
+    aspect-ratio: var(--r);
+
+/* 
+display: flex;
+justify-content: center;
+align-items: center;
+*/
 }
 
 li {
@@ -195,38 +195,38 @@ ul {
     line-height: 200%;
     width: 3em;
     opacity: 0;
-  }
+}
 
-  .svg-container {
+.svg-container {
     display: inline-block;
     position: relative;
     width: 100%;
     padding-bottom: 25%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
-  }
-  .svg-content-responsive {
+}
+.svg-content-responsive {
     display: inline-block;
     position: absolute;
     top: 10px;
     left: 0;
-  }
+}
 
-  li::marker {
+li::marker {
     color: #6666ff;
-  }
+}
 
-  strong {
+strong {
     color: #6b18f1;
-  }
+}
 
- #detailsContainer p {
+#detailsContainer p {
     font-size: 1vmax;
-  }
+}
 
-  .selected {
+.selected {
     stroke: black;
     stroke-width: 2;
-  }
+}
 
-  
+
