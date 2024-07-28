@@ -268,25 +268,25 @@ ul {
     font-size: 1vmax;
   }
 
-  .selected {
+  rect.selected {
     stroke: #6666ff ;
     stroke-width: 1px;
     fill: #57e0fa;
     box-shadow: ;
   }
 
-  text::selected {
+  text.selected {
     font-weight: bold;
     fill: #6666ff !important;
   }
 
-  .unselected {
+  rect.unselected {
     stroke: none;
     stroke-width: 0;
     background-color: #6666ff;
   }
 
-  text::unselected {
+  text.unselected {
     fill: #FFFFFF !important;
     font-weight: regular;
   }
