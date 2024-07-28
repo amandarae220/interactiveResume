@@ -16,30 +16,37 @@
 </head>
 
 <body>
-
-       <h1 id="name">AMANDA LLOYD</h1>
-    <h2 id="title">Developer & Visual Designer</h2>
-
-    <div id="ganttContainer" class="border">
-        <div id="ganttChart" style="text-align: center">
-            <!--div id="tag"></div-->
-        </div>
+    <div id="nameTitleContainer">
+        <h1 id="name">AMANDA LLOYD</h1>
+        <h2 id="title">Developer & Visual Designer</h2>
     </div>
 
-    <div class="bottomHalf">
-        <div id="skillsContainer" class="bottomHalfLeft">
-            <svg class="skills"></svg>
+    <div id="vizContainer">
+        <div id="ganttContainer" class="border">
+            <div class="titleContainer">Work Experience</div>
+            <div id="ganttChart" style="text-align: center">
+                <!--div id="tag"></div-->
+            </div>
         </div>
-        <div id="detailsContainer" class="bottomHalfRight">
-            <div id="detailsDiv" class="border">
-                <div style="margin-bottom: 1%; height: 19%; margin-top: 3%;">
-                    <p id="role" style="margin-top: 1%; margin-bottom: 0px;"></p>
-                    <p id="company" style="margin-top: 0px; margin-bottom: 0px;"></p>
-                    <p id="location" style="margin-top: 0px; margin-bottom: 0px;"></p>
+
+        <div class="bottomHalf">
+            <div id="skillsContainer" class="bottomHalfLeft">
+                <svg class="skills"></svg>
+            </div>
+            <div id="detailsContainer" class="bottomHalfRight">
+                <div id="detailsDiv" class="border">
+                    <div class="titleContainer">Role Details</div>
+                    <div class="paddingClass">
+                        <div style="margin-bottom: 1%; height: 19%; margin-top: 3%;">
+                            <p id="role" style="margin-top: 1%; margin-bottom: 0px;"></p>
+                            <p id="company" style="margin-top: 0px; margin-bottom: 0px;"></p>
+                            <p id="location" style="margin-top: 0px; margin-bottom: 0px;"></p>
+                        </div>
+                        <p style="margin-bottom: 2%; margin-top: 2%;">Duration: <span id="duration"></span></p>
+                        <p style="margin-bottom: 2%; margin-top: 2%;">Description: </p>
+                        <div id="description" style="padding-right: 2%"></div>
+                    </div>
                 </div>
-                <p style="margin-bottom: 2%; margin-top: 2%;">Duration: <span id="duration"></span></p>
-                <p style="margin-bottom: 2%; margin-top: 2%;">Description: </p>
-                <div id="description" style="padding-right: 2%"></div>
             </div>
         </div>
     </div>
@@ -48,6 +55,8 @@
     <div id="info">
         <p>Rotate screen for optimal viewing</p>
     </div>
+    </div>
+
 
     <script src="ganttChart.js"></script>
     <script src="hexbinChart.js"></script>
