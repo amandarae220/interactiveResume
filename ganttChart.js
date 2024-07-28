@@ -1,6 +1,8 @@
 var roleOutput = document.getElementById("role");
 roleOutput.innerHTML = "<i>(select a role to view more details)</i>";
 
+latestRole = "";
+
 /*************************
 *        Hexbins        *
 * **********************/
@@ -14,28 +16,28 @@ skillsData = [
     { x: 40, y: 0, label: "" },
     { x: 60, y: 0, label: "" },
     { x: 80, y: 0, label: "" },
-    { x: 10, y: 22, label: "css" },
-    { x: 30, y: 22, label: "html" },
-    { x: 50, y: 22, label: "javascript" },
-    { x: 70, y: 22, label: "angular" },
-    { x: 90, y: 22, label: "VBA" },
-    { x: 0, y: 44, label: "" },
-    { x: 20, y: 44, label: "d3.js" },
-    { x: 40, y: 44, label: "tableau" },
-    { x: 60, y: 44, label: "illustrator" },
-    { x: 80, y: 44, label: "powershell" },
-    { x: 10, y: 66, label: "servicenow" },
-    { x: 30, y: 66, label: "mySQL" },
-    { x: 50, y: 66, label: "jira" },
-    { x: 70, y: 66, label: "stata" },
+    { x: 10, y: 21, label: "css" },
+    { x: 30, y: 21, label: "html" },
+    { x: 50, y: 21, label: "javascript" },
+    { x: 70, y: 21, label: "angular" },
+    { x: 90, y: 21, label: "mySQL" },
+    { x: 0, y: 42, label: "" },
+    { x: 20, y: 42, label: "d3.js" },
+    { x: 40, y: 42, label: "tableau" },
+    { x: 60, y: 42, label: "illustrator" },
+    { x: 80, y: 42, label: "powershell" },
+    { x: 10, y: 63, label: "servicenow" },
+    { x: 30, y: 63, label: "angularJS" },
+    { x: 50, y: 63, label: "jira" },
+    { x: 70, y: 63, label: "typescript" },
 ];
 
 skillsContainerWidth = 530;
-skillsContainerHeight = 300;
+skillsContainerHeight = 275;
 
 
 // set the dimensions and margins of the graph
-var margin = { top: 10, right: 30, bottom: 30, left: 40 },
+var margin = { top: 10, right: 30, bottom: 0, left: 40 },
     width = skillsContainerWidth - margin.left - margin.right,
     height = skillsContainerHeight - margin.top - margin.bottom;
 
@@ -50,7 +52,7 @@ var x = d3.scaleLinear()
     .domain([0, 128])
     .range([0, width]);
 
-var svg2 = d3.select("#skillsContainer")
+var skillsSvg = d3.select("#skillsContainer")
     .select("svg")
 
 // Add Y axis
@@ -66,15 +68,15 @@ skillsData.forEach(function (d) {
 
 var hexbin = d3.hexbin()
     .size([width, height])
-    .radius((width / 5) / 2.2); // dictates the size of the hex
+    .radius((width / 5) / 2.25); // dictates the size of the hex
 
-var svg2 = d3.select("#skillsContainer")
+var skillsSvg = d3.select("#skillsContainer")
     .select("svg")
 
-svg2.attr("viewBox", "0 0 " + width + " " + height)
+skillsSvg.attr("viewBox", "0 0 " + "460 " + "250")
     .append("g");
 
-svg2.append("g")
+skillsSvg.append("g")
     .selectAll(".hexagon")
     .data(inputForHexbinFun)
     .enter()
@@ -91,7 +93,7 @@ svg2.append("g")
         return "#6666ff"; //color(d.length); 
     });
 
-svg2.append("g")
+skillsSvg.append("g")
     .selectAll("labels")
     .data(inputForHexbinFun)
     .enter()
@@ -119,10 +121,10 @@ var taskArray = [
         location: "Washington, DC",
         startTime: "8/21/19", //year/month/day
         endTime: "3/18/24",
-        details: "d3.js, angular, javascript, html, css, servicenow, jira, tableau, illustrator, inDesign",
+        details: "d3.js, angular, javascript, html, css, servicenow, jira, tableau, illustrator, inDesign, angularJS, typescript",
         description: [
-            "Build out UI components in <strong>Angular</strong> and <strong>ServiceNow</strong> in support of front-end UI development for a public-facing application",
-            "Design and develop dynamic dashboards that provide clear, compelling, and interactive insights via <strong>D3.js/Angular</strong> through wireframe workshops with stakeholders",
+            "Build out UI components in <strong>AngularJS</strong> and <strong>ServiceNow</strong> in support of front-end UI development for a public-facing application",
+            "Design and develop dynamic dashboards that provide clear, compelling, and interactive insights via <strong>D3.js/Angular/typescript</strong> through wireframe workshops with stakeholders",
             "Design infographics, icons, and other static visuals using <strong>Adobe Illustrator</strong> to enhance various mediums of deliverables"
         ]
     },
@@ -186,18 +188,18 @@ for (var i = 0; i < taskArray.length; i++) {
 }
 
 var w = 1200;
-var h = 325;
+var h = 250;
 var aspect = w / h;
 
 console.log(width);
 console.log(height);
 
-var svg1 = d3.select("div#ganttChart")
+var ganttSvg = d3.select("div#ganttChart")
     .append("svg")
     .attr("width", '100%')
     .attr("height", '100%')
-    .attr('viewBox','0 0 1200 275')
-    .attr('preserveAspectRatio','xMinYMin');
+    .attr('viewBox', '0 0 1200 255')
+    .attr('preserveAspectRatio', 'xMinYMin');
 
 
 var dateFormat = d3.timeParse("%m/%d/%y");
@@ -213,7 +215,7 @@ function makeGant(tasks, pageWidth, pageHeight) {
 
     var barHeight = 40;
     var gap = barHeight + 4;
-    var topPadding = 45;
+    var topPadding = 30;
     var sidePadding = 0;
 
     makeGrid(sidePadding, topPadding, pageWidth, pageHeight);
@@ -223,11 +225,11 @@ function makeGant(tasks, pageWidth, pageHeight) {
 
 function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) {
 
-    var bigRects = svg1.append("g")
+    var bigRects = ganttSvg.append("g")
         .selectAll("rect")
         .data(theArray)
         .enter()
-        .append("rect")
+        .append("g")
         .attr("x", 0)
         .attr("y", function (d, i) {
             return i * theGap + theTopPad - 2;
@@ -236,16 +238,10 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         .attr("height", theGap)
         .attr("stroke", "none")
         .attr("fill", "none")
-    //.attr("opacity", 0.2);
+        .attr("class","unselected");
 
 
-    var rectangles = svg1.append('g')
-        .selectAll("rect")
-        .data(theArray)
-        .enter();
-
-
-    var innerRects = rectangles.append("rect")
+    var innerRects = bigRects.append("rect")
         .attr("rx", 3)
         .attr("ry", 3)
         .attr("x", function (d) {
@@ -260,48 +256,49 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         .attr("height", theBarHeight)
         .attr("stroke", "none")
         .attr("fill", "#6666ff")
+        .classed("unselected", true);
 
-/*
-    innerRects.on("mouseover", function (d) {
-        vals = d3.select(this)._groups[0][0].__data__.details;
+    var rectText = bigRects.append("text")
+        .text(function (d) {
+            return d.task;
+        })
+        .attr("x", function (d) {
+            return (timeScale(dateFormat(d.endTime)) - timeScale(dateFormat(d.startTime))) / 2 + timeScale(dateFormat(d.startTime)) + theSidePad;
+        })
+        .attr("y", function (d, i) {
+            return i * theGap + 24 + theTopPad;
+        })
+        .attr("font-size", 11)
+        .attr("text-anchor", "middle")
+        .attr("text-height", theBarHeight)
+        .attr("fill", "#fff")
+        //.attr("class", "balance")
+        .classed("unselected", true);
 
-        var tag = "Duration: " + d3.select(this).data()[0].duration + "<br/>" +
-            "(" + d3.select(this).data()[0].startTime + " - " + d3.select(this).data()[0].endTime + ")";
+       // #ganttChart > svg > g:nth-child(2) > g:nth-child(1)
 
-        var output = document.getElementById("tag");
+    bigRects.on("click", function (d) {
 
-        var x = (this.x.animVal.value + this.width.animVal.value / 2) -10 + "px";
-        var y = this.y.animVal.value + 78 + "px";
+        console.log(bigRects);
 
-        output.innerHTML = tag;
-        output.style.top = y;
-        output.style.left = x;
-        output.style.display = "block";
+        if (d3.select(this).classed("unselected")) {
 
-    }).on('mouseout', function () {
-        var output = document.getElementById("tag");
-        output.style.display = "none";
-    });
-    */
+            // only one role can be selected at a time
+            // find any previously selected roles and set it to being unselected
+            d3.select("body").selectAll(".selected").classed("unselected", true).classed("selected", false);
 
-    innerRects.on("click", function (d) {
-
-        if (!d3.select(this).classed("selected")) {
-
-            // if another tag has already been selected, remove the 'selected' class 
-            if (d3.select("body").selectAll(".selected")) {
-                    // the user should only be able to select one role at a time 
-                    d3.select("body").selectAll(".selected").classed("selected",false);
-            };
-
-            // add the 'selected' class to the newly selected tag 
-            d3.select(this).classed("selected", true)
+            // add the 'selected' class to the newly selected g in the gantt along with its child rect & text
+            d3.select(this).classed("selected", true).classed("unselected", false);
+            d3.select(this).selectAll('text').classed("selected", true).classed("unselected", false);
+            d3.select(this).selectAll('rect').classed("selected", true).classed("unselected", false);
 
             // get the skills associated with the selected role in the gantt so we can filter the skills hexagons
             vals = d3.select(this)._groups[0][0].__data__.details;
 
+            thisRole = d3.select(this)._groups[0][0].__data__.task;
+
             // hide skills that aren't included in the role
-            svg2.selectAll("text")
+            skillsSvg.selectAll("text")
                 .transition()
                 .duration(0)
                 .filter(function () {
@@ -309,16 +306,44 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
                 })
                 .style("opacity", "0");
 
+            // new lighter background requires darker font color to contrast approriately
+            skillsSvg.selectAll("text")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    return vals.includes(d3.select(this).text());
+                })
+                .style("fill", "#6666ff");
+
+            skillsSvg.selectAll(".hexagon")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    var hexValue = d3.select(this)._groups[0][0].__data__[2];
+                    return vals.includes(hexValue) && (hexValue !== '');
+                })
+                .style("fill", "#57e0fa");
+
+
             // show skills that are included in the role
-            svg2.selectAll("text")
+            skillsSvg.selectAll("text")
                 .transition()
                 .duration(0)
                 .filter(function () {
                     return vals.includes(d3.select(this).text());
                 })
                 .style("opacity", "1");
+            //.style("color", "#6666ff");
 
-            
+            // change background color of skills that are included in the role
+            skillsSvg.selectAll(".hexagon")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    var hexValue = d3.select(this)._groups[0][0].__data__[2];
+                    return !vals.includes(hexValue) || (hexValue === '');
+                })
+                .style("fill", "#6666ff");
 
             // get the role info for the details container
             var role = d3.select(this).data()[0].task;
@@ -351,19 +376,52 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
         } else {
 
             // remove the 'selected' class since the user is deselecting the role 
-            d3.select(this).classed("selected", false);
+            d3.select(this).classed("selected", false).classed("unselected", true);
+            d3.select(this).selectAll('text').classed("selected", false).classed("unselected", true);
+            d3.select(this).selectAll('rect').classed("selected", false).classed("unselected", true);
 
             // get the skills associated with the selected role in the gantt so we can filter the skills hexagons
             vals = d3.select(this)._groups[0][0].__data__.details;
 
             // show all skills in the hexagon since nothing should be selected at this point 
-            svg2.selectAll("text")
+            skillsSvg.selectAll("text")
                 .transition()
                 .duration(0)
                 .filter(function () {
                     return !vals.includes(d3.select(this).text());
                 })
                 .style("opacity", "1");
+
+                            // reset font color for hexagons
+            skillsSvg.selectAll("text")
+            .transition()
+            .duration(0)
+            .style("fill", "#FFFFFF");
+
+            // reset font color for hexagons
+            skillsSvg.selectAll("text")
+                .transition()
+                .duration(0)
+                .filter(function () {
+                    return vals.includes(d3.select(this).text());
+                })
+                .style("fill", "#FFFFFF");
+
+            // reset hexagon skill colors
+            skillsSvg.selectAll(".hexagon")
+                .transition()
+                .duration(0)
+                .style("fill", "#6666ff");
+
+            // set the text color for the selected rect
+            ganttSvg.transition()
+            .duration(0)
+            .filter(function () {
+                console.log(this);
+                console.log(d3.select(this).text());
+                return vals.includes(d3.select(this).text());
+            })
+            .style("fill", "#FFFFFF");
 
             var roleOutput = document.getElementById("role");
             roleOutput.innerHTML = " <i>(select a role to view more details)</i> ";
@@ -384,46 +442,6 @@ function drawRects(theArray, theGap, theTopPad, theSidePad, theBarHeight, w, h) 
             output.style.display = "none";
         }
     });
-
-
-    var rectText = rectangles.append("text")
-        .text(function (d) {
-            return d.task;
-        })
-        .attr("x", function (d) {
-            return (timeScale(dateFormat(d.endTime)) - timeScale(dateFormat(d.startTime))) / 2 + timeScale(dateFormat(d.startTime)) + theSidePad;
-        })
-        .attr("y", function (d, i) {
-            return i * theGap + 24 + theTopPad;
-        })
-        .attr("font-size", 11)
-        .attr("text-anchor", "middle")
-        .attr("text-height", theBarHeight)
-        .attr("fill", "#fff")
-        .attr("class", "balance");
-/*
-    rectText.on("mouseover", function (d) {
-        vals = d3.select(this)._groups[0][0].__data__.details;
-
-        var tag = "Duration: " + d3.select(this).data()[0].duration + "<br/>" +
-            "(" + d3.select(this).data()[0].startTime + " - " + d3.select(this).data()[0].endTime + ")";
-
-        var output = document.getElementById("tag");
-
-        var x = (this.x.animVal.value + this.width.animVal.value / 2) + 115 + "px";
-        var y = this.y.animVal.value + 140 + "px";
-
-        output.innerHTML = tag;
-        output.style.top = y;
-        output.style.left = x;
-        output.style.display = "block";
-
-    }).on('mouseout', function () {
-        var output = document.getElementById("tag");
-        output.style.display = "none";
-    });
-    */
-
 }
 
 
@@ -434,9 +452,9 @@ function makeGrid(theSidePad, theTopPad, w, h) {
         //.tickSize(-h+theTopPad+20, 0, 0)    // long gray tick lines removed
         .tickFormat(d3.timeScale);
 
-    var grid = svg1.append('g')
+    var grid = ganttSvg.append('g')
         .attr('class', 'grid')
-        .attr("transform", "translate(" + 1 + "," + 240 + ")")
+        .attr("transform", "translate(" + 1 + "," + 220 + ")")
         .call(xAxis)
         .selectAll("text")
         .style("text-anchor", "middle")
@@ -445,42 +463,3 @@ function makeGrid(theSidePad, theTopPad, w, h) {
         .attr("font-size", 12)
         .attr("dy", "1em");
 }
-
-
-d3.selectAll('.hexagon').on('mouseover', function (d) {
-
-    vals = d3.select(this)._groups[0][0].__data__[2];
-    console.log(vals);
-    // set the background color for the selected bar in the gantt
-    d3.select(this).attr("fill", "#6f00ff")
-    // fade in/out the relevant skills in the hex chart
-
-    svg1.selectAll("rect")
-        .transition()
-        .duration(0)
-        .filter(function (d) {
-            return d3.select(this)._groups[0][0].__data__.details.includes(vals);
-        })
-        .style("opacity", "1");
-
-    svg1.selectAll("rect")
-        .transition()
-        .duration(0)
-        .filter(function () {
-            return !d3.select(this)._groups[0][0].__data__.details.includes(vals);
-        })
-        .style("opacity", "0.5");
-
-})
-
-d3.selectAll('.hexagon').on("mouseout", function (d) {
-    //instructions for unselection
-    svg1.selectAll("rect")
-        .transition()
-        .duration(0)
-        .filter(function () {
-            return !d3.select(this)._groups[0][0].__data__.details.includes(vals);
-        })
-        .style("opacity", "1");
-});
-
