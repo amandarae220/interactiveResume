@@ -130,6 +130,8 @@ body {
     display: block;
     text-align: center;
     align-content: center;
+    border-top-right-radius: .4rem;
+    border-top-left-radius: .4rem;
 }
 
 .bottomHalfRight {
